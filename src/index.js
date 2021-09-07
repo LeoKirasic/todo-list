@@ -14,5 +14,10 @@ class Project {
         this.title = title;
     }
 }
-
+const addProject = (title) => {
+    const project = new Project(title);
+    console.log('new project added');
+}
 renderDom();
+
+export {addProject}

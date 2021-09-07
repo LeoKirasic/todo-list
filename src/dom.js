@@ -1,7 +1,8 @@
-
+import {addProject} from "./index.js";
 const renderDom = () => {
     const content = document.querySelector('#content');
     const createProjectButton = document.createElement('button');
+    createProjectButton.id = 'add-project';
     content.appendChild(createProjectButton);
     createProjectButton.textContent = 'Add project'
         const modal = document.createElement('div');
@@ -26,7 +27,12 @@ const renderDom = () => {
         modalContent.appendChild(addButton);
         modal.appendChild(modalContent);
         content.appendChild(modal);
-
+        addButton.addEventListener('click', () => {
+            const project = document.createElement('div');
+            project.textContent = input.value;
+            addProject(input.value);
+            content.appendChild(project);
+        });
         createProjectButton.addEventListener('click', () => {
             modal.style.display = 'block';
         });
