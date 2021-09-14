@@ -22,15 +22,34 @@ function loadDom() {
     projectList.id = 'project-list';
     const defaultProject = document.createElement('div');
     defaultProject.textContent = 'Default';
+    defaultProject.classList = 'project';
     projectList.appendChild(defaultProject);
     projectForm.appendChild(projectList);
     projectSubmitButton.addEventListener('click', () => {
         addProject(projectFormInput.value);
         const project = document.createElement('div');
+        project.classList = 'project';
         project.textContent = projectFormInput.value;
-        projectForm.appendChild(project);
+        projectList.appendChild(project);
         console.table(projects);
+        document.querySelectorAll('.project').forEach(item => {
+            item.addEventListener('click', (e) => {
+                selectedProject.textContent = e.target.textContent;
+                
+            })
+        });
     });
+
+    const todo = document.createElement('div');
+    todo.textContent = 'TODO';
+    const selectedProject = document.createElement('div');
+    selectedProject.id = 'selected-project';
+    selectedProject.textContent = 'Default';
+    const tasks = document.createElement('div');
+    tasks.textContent = 'Tasks:'
+    todo.appendChild(selectedProject);
+    todo.appendChild(tasks);
+    content.appendChild(todo);
 }
 
 export{loadDom}
