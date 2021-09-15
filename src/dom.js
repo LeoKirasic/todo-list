@@ -35,7 +35,8 @@ function loadDom() {
         document.querySelectorAll('.project').forEach(item => {
             item.addEventListener('click', (e) => {
                 selectedProject.textContent = e.target.textContent;
-                
+                const test = projects.indexOf(e.target.textContent);
+                console.log(test);
             })
         });
     });
@@ -45,6 +46,7 @@ function loadDom() {
     const selectedProject = document.createElement('div');
     selectedProject.id = 'selected-project';
     selectedProject.textContent = 'Default';
+    const todoForm = document.createElement('div');
     const tasks = document.createElement('div');
     tasks.textContent = 'Tasks:'
     todo.appendChild(selectedProject);

@@ -17,7 +17,7 @@ class Todo {
 
 function addProject(title) {
     const project = new Project(title);
-    projects.push(project);
+    projects.push(project.title);
 }
 function addTodo(title, dueDate) {
     const todo = new Todo(title, dueDate);
@@ -29,4 +29,4 @@ addProject('Default');
 console.table(projects);
 loadDom();
 
-export {addProject, projects}
+export {addProject, projects, Project}
