@@ -1,7 +1,6 @@
 import {loadDom} from './dom.js';
 import css from './style.css';
 const projects = [];
-
 class Project {
     constructor(title) {
         this.title = title;
@@ -17,16 +16,17 @@ class Todo {
 
 function addProject(title) {
     const project = new Project(title);
-    projects.push(project.title);
+    projects.push(project);
+    console.log(project);
+    console.log(projects)
 }
-function addTodo(title, dueDate) {
+function addTodo(project, title, dueDate) {
     const todo = new Todo(title, dueDate);
     project.arrayOfTodos.push(todo);
 }
 
 addProject('Default');
-
-console.table(projects);
+addTodo
 loadDom();
 
-export {addProject, projects, Project}
+export {addProject, Project, projects}
