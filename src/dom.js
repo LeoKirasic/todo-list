@@ -31,15 +31,15 @@ function loadDom() {
         project.classList = 'project';
         project.textContent = projectFormInput.value;
         projectList.appendChild(project);
-        console.table(projectsByTitle);
         document.querySelectorAll('.project').forEach(item => {
             item.addEventListener('click', (e) => {
                 selectedProject.textContent = e.target.textContent;
-                // const test = projectsByTitle.indexOf(e.target.textContent);
-                // console.log(test);
                 const index = projects.findIndex(item => item.title === e.target.textContent);
                 console.log(index);
-                console.log(projects[index])
+                console.log(projects[index].arrayOfTodos);
+                const task = document.createElement('div');
+                task.textContent = projects[index].arrayOfTodos;
+                tasks.appendChild(task);
             })
         });
     });
@@ -59,8 +59,10 @@ function loadDom() {
     todoForm.appendChild(todoButton);
     todo.appendChild(todoForm);
     const tasks = document.createElement('div');
+    const tasksContent = document.createElement('div');
     tasks.textContent = 'Tasks:'
     todo.appendChild(selectedProject);
+    tasks.appendChild(tasksContent);
     todo.appendChild(tasks);
     content.appendChild(todo);
 }
