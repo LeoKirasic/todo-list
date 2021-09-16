@@ -17,6 +17,7 @@ function loadDom() {
     projectForm.appendChild(projectSubmitButton);
     projectHeader.appendChild(projectForm);
     content.appendChild(projectHeader);
+    const task = document.createElement('div');
 
     const projectList = document.createElement('div');
     projectList.id = 'project-list';
@@ -37,7 +38,6 @@ function loadDom() {
                 const index = projects.findIndex(item => item.title === e.target.textContent);
                 console.log(index);
                 console.log(projects[index].arrayOfTodos);
-                const task = document.createElement('div');
                 task.textContent = projects[index].arrayOfTodos;
                 tasks.appendChild(task);
             })
