@@ -1,5 +1,4 @@
-import { addProject, projects } from './index.js';
-import { projectsByTitle } from './index.js';
+import { addProject, projects, addTodo } from './index.js';
 const content = document.querySelector('#content');
 
 function loadDom() {
@@ -51,7 +50,9 @@ function loadDom() {
     selectedProject.textContent = 'Default';
     const todoForm = document.createElement('div');
     const todoTitleInput = document.createElement('input');
+    todoTitleInput.placeholder = 'Title';
     const todoDueDateInput = document.createElement('input');
+    todoDueDateInput.placeholder = 'Due date';
     const todoButton = document.createElement('button');
     todoButton.textContent = 'Add';
     todoForm.appendChild(todoTitleInput);
@@ -65,6 +66,12 @@ function loadDom() {
     tasks.appendChild(tasksContent);
     todo.appendChild(tasks);
     content.appendChild(todo);
+
+    todoButton.addEventListener('click', () => {
+        const index = projects.findIndex(item => item.title === selectedProject.textContent);
+        addTodo(projects[index], todoTitleInput.value, todoDueDateInput.value);
+        console.log(projects);
+    });
 }
 
 export{loadDom}

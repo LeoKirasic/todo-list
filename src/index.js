@@ -29,4 +29,4 @@ addProject('Default');
 addTodo
 loadDom();
 
-export {addProject, Project, projects}
+export {addProject, Project, projects, addTodo}
