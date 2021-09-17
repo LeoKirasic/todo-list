@@ -37,7 +37,7 @@ function loadDom() {
                 const index = projects.findIndex(item => item.title === e.target.textContent);
                 console.log(index);
                 console.log(projects[index].arrayOfTodos);
-                task.textContent = projects[index].arrayOfTodos;
+                task.textContent = JSON.stringify(projects[index].arrayOfTodos);
                 tasks.appendChild(task);
             })
         });
@@ -70,7 +70,9 @@ function loadDom() {
     todoButton.addEventListener('click', () => {
         const index = projects.findIndex(item => item.title === selectedProject.textContent);
         addTodo(projects[index], todoTitleInput.value, todoDueDateInput.value);
-        console.log(projects);
+        console.log(projects[index].arrayOfTodos);
+        task.textContent = JSON.stringify(projects[index].arrayOfTodos);
+
     });
 }
 
