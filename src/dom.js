@@ -37,8 +37,14 @@ function loadDom() {
                 const index = projects.findIndex(item => item.title === e.target.textContent);
                 console.log(index);
                 console.log(projects[index].arrayOfTodos);
-                // taskList.textContent = JSON.stringify(projects[index].arrayOfTodos);
-                taskList.appendChild(task);
+                while (taskList.firstChild) {
+                    taskList.removeChild(taskList.lastChild);
+                  }
+                for(let i = 0; i < projects[index].arrayOfTodos.length; i++) {
+                    let task = document.createElement('div');
+                    task.textContent = projects[index].arrayOfTodos.at(i).info();
+                    taskList.appendChild(task);
+                }
                 tasks.appendChild(taskList);
             })
         });
@@ -68,14 +74,15 @@ function loadDom() {
     tasks.appendChild(tasksContent);
     todo.appendChild(tasks);
     content.appendChild(todo);
-    let task = document.createElement('div');
 
     todoButton.addEventListener('click', () => {
         const index = projects.findIndex(item => item.title === selectedProject.textContent);
         addTodo(projects[index], todoTitleInput.value, todoDueDateInput.value);
+        let task = document.createElement('div');
+
         task = document.createElement('div');
         task.id = 'task';
-        task.textContent = `Title: ${projects[index].arrayOfTodos.at(-1).title} Due Date: ${projects[index].arrayOfTodos.at(-1).dueDate}`;
+        task.textContent = projects[index].arrayOfTodos.at(-1).info();
         console.log(task);
         console.log(projects[index].arrayOfTodos);
         taskList.appendChild(task);

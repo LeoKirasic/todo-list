@@ -11,7 +11,12 @@ class Todo {
     constructor(title, dueDate) {
         this.title = title;
         this.dueDate = dueDate;
+
+        this.info = function() {
+            return `Title: ${title} Due Date: ${dueDate}`;
+        }
     }
+    
 }
 
 function addProject(title) {
