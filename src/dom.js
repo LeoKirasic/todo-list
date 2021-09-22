@@ -95,9 +95,12 @@ function loadDom() {
 
 
     todoButton.addEventListener('click', () => {
-        if(todoTitleInput.value === '' || todoDueDateInput === '') {
+        if(todoTitleInput.value === '' || todoDueDateInput.value === '') {
             alert(`Can't input an empty TODO!`);
         } else {
+            if(selectedProject.textContent === 'No project selected!') {
+                alert('Please select a project!');
+            } else {
         const index = projects.findIndex(item => item.title === selectedProject.textContent);
         addTodo(projects[index], todoTitleInput.value, todoDueDateInput.value);
         let task = document.createElement('div');
@@ -120,7 +123,7 @@ function loadDom() {
         console.log(task);
         console.log(projects[index].arrayOfTodos);
         taskList.appendChild(task);
-
+        }
         }
     });
 }
