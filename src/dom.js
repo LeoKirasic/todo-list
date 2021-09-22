@@ -89,14 +89,14 @@ function loadDom() {
     content.appendChild(todo);
 
 
-    let counter = 0;
 
     todoButton.addEventListener('click', () => {
+        if(todoTitleInput.value === '' || todoDueDateInput === '') {
+            alert(`Can't input an empty TODO!`);
+        } else {
         const index = projects.findIndex(item => item.title === selectedProject.textContent);
         addTodo(projects[index], todoTitleInput.value, todoDueDateInput.value);
         let task = document.createElement('div');
-        task.dataset.index = counter;
-        counter++;
         console.log('dataset: ', task.dataset.index);
         task.id = 'task';
         task.textContent = projects[index].arrayOfTodos.at(-1).info();
@@ -117,6 +117,7 @@ function loadDom() {
         console.log(projects[index].arrayOfTodos);
         taskList.appendChild(task);
 
+        }
     });
 }
 
