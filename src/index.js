@@ -27,8 +27,6 @@ function addTodo(project, title, dueDate) {
     const todo = new Todo(title, dueDate);
     project.arrayOfTodos.push(todo);
 }
-
-addProject('Default');
 addTodo
 loadDom();
 

@@ -20,12 +20,15 @@ function loadDom() {
 
     const projectList = document.createElement('div');
     projectList.id = 'project-list';
-    const defaultProject = document.createElement('div');
-    defaultProject.textContent = 'Default';
-    defaultProject.classList = 'project';
-    projectList.appendChild(defaultProject);
+    // const defaultProject = document.createElement('div');
+    // defaultProject.textContent = 'Default';
+    // defaultProject.classList = 'project';
+    // projectList.appendChild(defaultProject);
     projectForm.appendChild(projectList);
     projectSubmitButton.addEventListener('click', () => {
+        if(projectFormInput.value === '') {
+            alert(`Can't submit empty project!`);
+        } else {
         addProject(projectFormInput.value);
         const project = document.createElement('div');
         project.classList = 'project';
@@ -61,13 +64,14 @@ function loadDom() {
                 tasks.appendChild(taskList);
             })
         });
+        }
     });
 
     const todo = document.createElement('div');
     todo.textContent = 'TODO';
     const selectedProject = document.createElement('div');
     selectedProject.id = 'selected-project';
-    selectedProject.textContent = 'Default';
+    selectedProject.textContent = 'No project selected!';
     const todoForm = document.createElement('div');
     const todoTitleInput = document.createElement('input');
     todoTitleInput.placeholder = 'Title';
