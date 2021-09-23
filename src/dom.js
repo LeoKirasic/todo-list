@@ -17,20 +17,21 @@ function loadDom() {
     projectHeader.appendChild(projectForm);
     content.appendChild(projectHeader);
     const taskList = document.createElement('div');
-
     const projectList = document.createElement('div');
+
+    // let project = document.createElement('div');
+    // project.textContent = projects[3].title;
+    // projectList.appendChild(project);
+    
     projectList.id = 'project-list';
-    // const defaultProject = document.createElement('div');
-    // defaultProject.textContent = 'Default';
-    // defaultProject.classList = 'project';
-    // projectList.appendChild(defaultProject);
     projectForm.appendChild(projectList);
     projectSubmitButton.addEventListener('click', () => {
         if(projectFormInput.value === '') {
             alert(`Can't submit empty project!`);
         } else {
         addProject(projectFormInput.value);
-        const project = document.createElement('div');
+        
+        project = document.createElement('div');
         project.classList = 'project';
         project.textContent = projectFormInput.value;
         projectList.appendChild(project);
