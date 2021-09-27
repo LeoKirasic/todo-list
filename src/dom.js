@@ -19,10 +19,13 @@ function loadDom() {
     const taskList = document.createElement('div');
     const projectList = document.createElement('div');
 
-    // let project = document.createElement('div');
-    // project.textContent = projects[3].title;
-    // projectList.appendChild(project);
     
+      for(let i = 0; i < projects.length; i++){
+     let project = document.createElement('div');
+     project.textContent = projects[i].title;
+     project.classList = 'project';
+     projectList.appendChild(project);
+      }
     projectList.id = 'project-list';
     projectForm.appendChild(projectList);
     projectSubmitButton.addEventListener('click', () => {
@@ -30,11 +33,16 @@ function loadDom() {
             alert(`Can't submit empty project!`);
         } else {
         addProject(projectFormInput.value);
-        
+        let project = document.createElement('div');
         project = document.createElement('div');
         project.classList = 'project';
         project.textContent = projectFormInput.value;
         projectList.appendChild(project);
+        addEventsToProjects();
+    }
+});
+
+        function addEventsToProjects(){
         document.querySelectorAll('.project').forEach(item => {
             item.addEventListener('click', (e) => {
                 selectedProject.textContent = e.target.textContent;
@@ -47,14 +55,16 @@ function loadDom() {
                 for(let i = 0; i < projects[index].arrayOfTodos.length; i++) {
                     let task = document.createElement('div');
                     task.id = 'task'
-                    task.textContent = projects[index].arrayOfTodos.at(i).info();
+                    task.textContent = projects[index].arrayOfTodos.at(i).info;
                     const deleteButton = document.createElement('button');
                     deleteButton.textContent = 'X';
 
                     deleteButton.addEventListener('click', (e) => {
-                        const todoIndex = projects[index].arrayOfTodos.findIndex(item => item.info() === e.target.closest('#task').textContent.replace('X', ''));
-
+                        const todoIndex = projects[index].arrayOfTodos.findIndex(item => item.info === e.target.closest('#task').textContent.replace('X', ''));
+                        console.log('todo index',todoIndex)
                         projects[index].arrayOfTodos.splice(todoIndex, 1);
+
+                        window.localStorage.setItem('projects' , JSON.stringify(projects));
                         e.target.closest('#task').remove();
                         console.log(projects[index].arrayOfTodos);
                     });
@@ -65,9 +75,8 @@ function loadDom() {
                 tasks.appendChild(taskList);
             })
         });
-        }
-    });
-
+    }
+    addEventsToProjects();
     const todo = document.createElement('div');
     todo.textContent = 'TODO';
     const selectedProject = document.createElement('div');
@@ -107,13 +116,14 @@ function loadDom() {
         let task = document.createElement('div');
         console.log('dataset: ', task.dataset.index);
         task.id = 'task';
-        task.textContent = projects[index].arrayOfTodos.at(-1).info();
+        task.textContent = projects[index].arrayOfTodos.at(-1).info;
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'X';
 
          deleteButton.addEventListener('click', (e) => {
-            const todoIndex = projects[index].arrayOfTodos.findIndex(item => item.info() === e.target.closest('#task').textContent.replace('X', ''));
+            const todoIndex = projects[index].arrayOfTodos.findIndex(item => item.info === e.target.closest('#task').textContent.replace('X', ''));
 
+            window.localStorage.setItem('projects' , JSON.stringify(projects));
             projects[index].arrayOfTodos.splice(todoIndex, 1);
             e.target.closest('#task').remove();
             console.log(projects[index].arrayOfTodos);
