@@ -47,8 +47,6 @@ function loadDom() {
             item.addEventListener('click', (e) => {
                 selectedProject.textContent = e.target.textContent;
                 const index = projects.findIndex(item => item.title === e.target.textContent);
-                console.log(index);
-                console.log(projects[index].arrayOfTodos);
                 while (taskList.firstChild) {
                     taskList.removeChild(taskList.lastChild);
                   }
@@ -58,15 +56,14 @@ function loadDom() {
                     task.textContent = projects[index].arrayOfTodos.at(i).info;
                     const deleteButton = document.createElement('button');
                     deleteButton.textContent = 'X';
+                    window.localStorage.setItem('projects' , JSON.stringify(projects));
 
                     deleteButton.addEventListener('click', (e) => {
                         const todoIndex = projects[index].arrayOfTodos.findIndex(item => item.info === e.target.closest('#task').textContent.replace('X', ''));
-                        console.log('todo index',todoIndex)
                         projects[index].arrayOfTodos.splice(todoIndex, 1);
 
                         window.localStorage.setItem('projects' , JSON.stringify(projects));
                         e.target.closest('#task').remove();
-                        console.log(projects[index].arrayOfTodos);
                     });
 
                     task.appendChild(deleteButton);
@@ -114,7 +111,6 @@ function loadDom() {
         const index = projects.findIndex(item => item.title === selectedProject.textContent);
         addTodo(projects[index], todoTitleInput.value, todoDueDateInput.value);
         let task = document.createElement('div');
-        console.log('dataset: ', task.dataset.index);
         task.id = 'task';
         task.textContent = projects[index].arrayOfTodos.at(-1).info;
         const deleteButton = document.createElement('button');
@@ -123,20 +119,19 @@ function loadDom() {
          deleteButton.addEventListener('click', (e) => {
             const todoIndex = projects[index].arrayOfTodos.findIndex(item => item.info === e.target.closest('#task').textContent.replace('X', ''));
 
-            window.localStorage.setItem('projects' , JSON.stringify(projects));
+            
             projects[index].arrayOfTodos.splice(todoIndex, 1);
             e.target.closest('#task').remove();
-            console.log(projects[index].arrayOfTodos);
+            window.localStorage.setItem('projects' , JSON.stringify(projects));
 
          });
 
         task.appendChild(deleteButton);
-        console.log(task);
-        console.log(projects[index].arrayOfTodos);
         taskList.appendChild(task);
         }
         }
     });
+
 }
 
 export{loadDom}
