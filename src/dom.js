@@ -46,13 +46,6 @@ function loadDom() {
 
         function addEventsToProjects(){
         document.querySelectorAll('.project').forEach(item => {
-            item.addEventListener('contextmenu', (e) => {
-                e.preventDefault();
-                const index = projects.findIndex(item => item.title === e.target.textContent);
-                projects.splice(index, 1);
-                window.localStorage.setItem('projects' , JSON.stringify(projects));
-                e.target.closest('.project').remove();
-            });
             item.addEventListener('click', (e) => {
                 selectedProject.textContent = e.target.textContent;
                 const index = projects.findIndex(item => item.title === e.target.textContent);
