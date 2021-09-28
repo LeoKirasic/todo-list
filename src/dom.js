@@ -4,14 +4,16 @@ const content = document.querySelector('#content');
 function loadDom() {
     const projectHeader = document.createElement('div');
     projectHeader.textContent = 'PROJECTS';
-    
+    projectHeader.id = 'project-header'
     const projectForm = document.createElement('div');
     projectForm.id = 'project-form'
     const projectFormInput = document.createElement('input');
     projectFormInput.id = 'project-input';
+    projectFormInput.placeholder = 'Project';
     const projectSubmitButton = document.createElement('button');
     projectSubmitButton.id = 'project-button';
-    projectSubmitButton.textContent = 'Add'
+    projectSubmitButton.textContent = 'Add';
+    projectSubmitButton.classList = 'add-button'
     projectForm.appendChild(projectFormInput);
     projectForm.appendChild(projectSubmitButton);
     projectHeader.appendChild(projectForm);
@@ -55,6 +57,7 @@ function loadDom() {
                     task.id = 'task'
                     task.textContent = projects[index].arrayOfTodos.at(i).info;
                     const deleteButton = document.createElement('button');
+                    deleteButton.classList = 'delete-button'
                     deleteButton.textContent = 'X';
                     window.localStorage.setItem('projects' , JSON.stringify(projects));
 
@@ -76,10 +79,12 @@ function loadDom() {
     addEventsToProjects();
     const todo = document.createElement('div');
     todo.textContent = 'TODO';
+    todo.id = 'todo-header';
     const selectedProject = document.createElement('div');
     selectedProject.id = 'selected-project';
     selectedProject.textContent = 'No project selected!';
     const todoForm = document.createElement('div');
+    todoForm.id='todo-form'
     const todoTitleInput = document.createElement('input');
     todoTitleInput.placeholder = 'Title';
     const todoDueDateInput = document.createElement('input');
@@ -87,6 +92,7 @@ function loadDom() {
     todoDueDateInput.placeholder = 'Due date';
     const todoButton = document.createElement('button');
     todoButton.textContent = 'Add';
+    todoButton.classList = 'add-button'
     todoForm.appendChild(todoTitleInput);
     todoForm.appendChild(todoDueDateInput);
     todoForm.appendChild(todoButton);
@@ -114,6 +120,7 @@ function loadDom() {
         task.id = 'task';
         task.textContent = projects[index].arrayOfTodos.at(-1).info;
         const deleteButton = document.createElement('button');
+        deleteButton.classList = 'delete-button';
         deleteButton.textContent = 'X';
 
          deleteButton.addEventListener('click', (e) => {

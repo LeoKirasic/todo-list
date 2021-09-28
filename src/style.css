@@ -1,4 +1,96 @@
+body {
+    background-color: #3E4377;
+    color: white;
+    font-family: 'Roboto', serif;
+}
 #content {
     display: flex;
     gap: 30em;
+    align-items: center;
+    justify-content: center;
+}
+#project-header {
+    text-align: center;
+    border: 2px solid #FC5185;
+    transition: 0.2s;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 1em;
+    margin: 0.5em;
+    width: 20em;
+}
+/* #project-header:hover {
+    border: 3px solid #b9365e;
+} */
+
+#todo-header {
+    text-align: center;
+    border: 2px solid #FC5185;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    width: 30em;
+    transition: 0.2s;
+}
+/* #todo-header:hover {
+    border: 3px solid #b9365e;
+} */
+#todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+input {
+    outline: none;
+    border: 2px solid #D9CAB3;
+    color: white;
+    background-color: transparent;
+    cursor: text;
+}
+.project {
+    border: 1px dashed #D9CAB3;
+    margin: 0.5em;
+    transition: 0.1s;
+    cursor: pointer;
+}
+.project:hover {    
+    border-style:solid;
+
+}
+#project-form {
+    display: flex;
+    flex-direction: column;
+}
+#project-button {
+    margin-top: 0.5em;
+}
+#task {
+    margin: 0.5em;
+    border: 1px dashed #D9CAB3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.1s;
+}
+#task:hover {
+    border-style: solid;
+}
+.add-button {
+    background-color: transparent;
+    border: 2px solid #FC5185;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+}
+.add-button:hover {
+    background-color: #FC5185;
+}
+.delete-button {
+    border: none;
+    background-color: rgb(151, 16, 16);
+    width: 2em;
+    color: white;
+    cursor: pointer;
 }
