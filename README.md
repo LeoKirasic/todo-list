@@ -1,2 +1,2 @@
 # todo-list
-Todo list for the odin project curriculum. 
+Final project of the Organizing javascript section of TOP curriculum. Made with webpack and vanilla javascript.
